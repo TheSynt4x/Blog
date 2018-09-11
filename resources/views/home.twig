@@ -1,0 +1,46 @@
+{% extends 'templates/app.twig' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="my-4">My Blog <small>Home</small></h1>
+
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Home</li>
+            </ol>
+
+            {% for post in posts %}
+                <div class="card mb-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img style="height:530px;" class="card-img-top" src="{{ base_url() }}/{{ post.image }}" alt="Card image cap">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h2 class="card-title"><a href="{{ path_for('blog.post', {'id': post.id}) }}">{{ post.title }}</a></h2>
+                                <h4>Description: </h4>
+                                {{ post.content[:100] ~ '...' }}
+                                <br/>
+                                <br/>
+                                <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                        Posted on
+                        {{ post.created_at|date("M d \\a\\t h:i A") }}
+                        <a href="#">{{ post.author }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% include 'templates/partials/pagination.twig' %}
+        </div>
+
+        {% include 'templates/partials/sidebar.twig' %}
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    $("li#home").addClass("active");
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'templates/app.twig' %}
+{% block content %}
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div class="card my-4" style="width:380px;">
+                <h5 class="card-header">Sign Up</h5>
+                <div class="card-body">
+                    <form method="POST" action="{{ path_for('auth.signup') }}" role="form" autocomplete="off">
+                        <div class="form-group required {{ errors.username ? 'is-invalid' : ''}}">
+                            <label class="form-control-label" for="username">Username:</label>
+                            <input type="text" class="form-control {{ errors.username ? 'is-invalid' : ''}}" id="username" name="username" value="{{ old.username }}" placeholder="Username" required/>
+
+                            {% if errors.username %}
+                                <div class="invalid-feedback">{{ errors.username|first }}</div>
+                            {% endif %}
+
+                            <small class="form-text text-muted">Don't use your real name!</small>
+                        </div>
+
+                        <div class="form-group required {{ errors.email ? 'is-invalid' : ''}}">
+                            <label class="form-control-label" for="email">Email:</label>
+                            <input type="text" class="form-control {{ errors.email ? 'is-invalid' : ''}}" id="email" name="email" value="{{ old.email }}" placeholder="Email" required/>
+
+                            {% if errors.email %}
+                                <div class="invalid-feedback">{{ errors.email|first }}</div>
+                            {% endif %}
+
+                            <small class="form-text text-muted">Use a valid E-Mail address.</small>
+                        </div>
+
+
+                        <div class="form-group required {{ errors.password ? 'is-invalid' : ''}}">
+                            <label class="form-control-label" for="password">Password:</label>
+                            <input type="password" class="form-control form-control-danger {{ errors.password ? 'is-invalid' : ''}}" id="password" name="password" placeholder="Password" required/>
+
+                            {% if errors.password %}
+                                <div class="invalid-feedback">{{ errors.password|first }}</div>
+                            {% endif %}
+
+                            <small class="form-text text-muted">Password must be 6-14 characters long.</small>
+                        </div>
+
+                        <p>Fields marked with (<text style="color:red;">*</text>) are mandatory.</p>
+
+                        {{ csrf_field()|raw }}
+
+                        <input type="submit" class="btn btn-primary text-justify" style="margin-top:5px;" value="Register">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    $("li#signup").addClass("active");
+{% endblock %}

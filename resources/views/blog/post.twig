@@ -1,0 +1,84 @@
+{% extends 'templates/app.twig' %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <br/>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path_for('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ path_for('home') }}">Blog</a></li>
+            <li class="breadcrumb-item active">Post {{ post.id }}</li>
+        </ol>
+
+        <h1 class="mt-4">{{ post.title }}</h1>
+
+        <p class="lead">
+          by
+          <a href="#">{{ post.author }}</a>
+        </p>
+
+        <p>Posted on {{ post.created_at|date("M d \\a\\t h:i A") }}</p>
+
+        <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+
+        <hr />
+
+        <p class="lead">{{ post.subtitle }}</p>
+
+        <p>{{ post.content }}</p>
+
+        <hr>
+        {% if auth.check %}
+        <div class="card my-4" id="comment">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form method="POST" action="{{ path_for('blog.post', {'id': post.id}) }}{{errors.comment ? '#comments' : '#comment'}}" role="form">
+              <div class="form-group {{ errors.comment ? 'is-invalid' : ''}}">
+                <textarea class="form-control {{ errors.comment ? 'is-invalid' : ''}}" id="txtComment" name="comment" rows="3" rows="8" cols="30" maxlength="100"></textarea>
+
+                <p id="textarea_feedback" class="text-left text-muted"></p>
+                {% if errors.comment %}
+                    <div class="invalid-feedback">{{ errors.comment|first }}</div>
+                {% endif %}
+              </div>
+
+              {{ csrf_field()|raw }}
+
+              <input type="submit" class="btn btn-primary" value="Comment">
+            </form>
+          </div>
+        </div>
+        {% else %}
+            <h2>You need to be <a href="{{ path_for('auth.login') }}">signed in</a> to make a comment.</h2>
+            <hr>
+        {% endif %}
+
+        {% for comment in comments %}
+        <div class="media mb-4" id="comments">
+          <img class="d-flex mr-3 rounded-circle" height="64" width="64" src="{{ comment.getAvatar(comment.username) }}" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">{{ comment.username }}</h5>
+            {{ comment.comment }}
+          </div>
+        </div>
+        {% endfor %}
+
+        {% include 'templates/partials/pagination.twig' %}
+    </div>
+
+    {% include 'templates/partials/sidebar.twig' %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+    var text_max = 100;
+    $('#textarea_feedback').html(0 + ' / ' + text_max);
+
+    $('#txtComment').keyup(function() {
+        var text_length = $('#txtComment').val().length;
+        var text_remaining = 0 + text_length;
+
+        $('#textarea_feedback').html(text_remaining + ' / ' + text_max);
+    });
+
+{% endblock %}
