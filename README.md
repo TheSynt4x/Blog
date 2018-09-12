@@ -18,4 +18,5 @@
   <li>User Control Panel</li>
 </ul>
 
-<p>You need a web server to set this content management system up. A webserver with apache and mysql. Once you set this up don't forget to change mysql credentials in <b>bootstrap/Bootstrap.php</b></p>
+<h2>Setup:</h2>
+<p>You need a web server such as XAMPP or UniServer or even a hosting service to set this content management system up. A web server with apache and mysql is a must. Once you set this up don't forget to change mysql credentials in <b>bootstrap/Bootstrap.php</b>.</p>
