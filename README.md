@@ -1,5 +1,7 @@
 # Blog
-<p>A content management system built with Slim 3 PHP framework. This content management system uses twig templating system and illuminate database for fast querying of results. The blog is very simple and simplicity is it's key. This was one of my first projects made with bootstrap and has gone through a lot of development since, it utilizes bootstrap 4 as of the moment. I worked on this project in the first place to practice and get a grasp of web development as a whole. In the process I've learnt a lot about HTML, CSS, JavaScript and PHP.</p>
+<p>A content management system built with Slim 3 PHP framework. This content management system uses twig templating system and illuminate database for fast querying of results. The blog is very simple and simplicity is it's key. This was one of my first projects made with bootstrap and has gone through a lot of development since, it utilizes bootstrap 4 as of the moment.</p>
+
+<p>I worked on this project in the first place to practice and get a grasp of web development as a whole. In the process I've learnt a lot about HTML, CSS, JavaScript and PHP.</p>
 
 <h2>Features</h2>
 <ul>
