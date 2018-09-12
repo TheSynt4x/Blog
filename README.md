@@ -8,8 +8,6 @@
   <li>Comments - 100%</li>
 </ul>
 
-<p>and more...</p>
-
 <h2>More features to come</h2>
 <ul>
   <li>Add posts</li>
