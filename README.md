@@ -19,5 +19,5 @@
 </ul>
 <p>and more...</p>
 
-<h2>Setup:</h2>
+<h2>Setup</h2>
 <p>You need a web server such as XAMPP or UniServer or even a hosting service to set this content management system up. A web server with apache, mysql and PHP 7 is a must. Once you set this up don't forget to change mysql credentials in <b>bootstrap/Bootstrap.php</b>.</p>
